@@ -121,7 +121,7 @@ with open("practise/practise.txt", "w") as f:
         "Hi everyone\nwe are learning File I/O\nusing Java.\nI like programming in Java."
     )
 
-# Second Task
+# Task
 
 
 def replace_java(target_word: str, replace_word: str, path: str) -> None:
@@ -129,12 +129,14 @@ def replace_java(target_word: str, replace_word: str, path: str) -> None:
         data = f.read()
         new_data = data.replace(target_word, replace_word)
 
-        f.seek(0) # move pointer to beginning
-        f.write(new_data) # overwrite file
-        f.truncate() # remove leftover content
+        f.seek(0)  # move pointer to beginning
+        f.write(new_data)  # overwrite file
+        f.truncate()  # remove leftover content
 
 
 replace_java("Java", "Python", "practise/practise.txt")
+
+# Task
 
 
 def check_for_word(word: str, path: str) -> bool:
@@ -143,3 +145,32 @@ def check_for_word(word: str, path: str) -> bool:
 
 
 print(check_for_word("learning", "practise/practise.txt"))
+
+# Task
+
+
+def check_for_line(word: str, path: str) -> int:
+    line_no = 1
+    with open(path, "r") as f:
+        while True:
+            data = f.readline()
+            if not data:
+                break
+            if word in data:
+                return line_no
+            line_no += 1
+    return -1
+
+
+print(check_for_line("jkdjrf", "practise/practise.txt"))
+
+# Task
+
+
+def count_even_number(path):
+    with open(path, "r") as f:
+        return sum(1 for i in f.read().split(",") if int(i.strip()) % 2 == 0)
+
+
+
+print(count_even_number("practise/practise2.txt"))
