@@ -10,67 +10,63 @@
 # Read CSV file with Reader Metho
 
 
-# # first import the csv
-# import csv
+# first import the csv
+import csv
 
-# import csv
-# data = []
-# # using file handling to open the csv file
-# with open("csvfiles/demo.csv", "r") as rcsv:
-#     # allow to read and return the iterator object
-#     # initial space removing and remove the QUOTING
-#     csv_reader = csv.reader(rcsv, skipinitialspace=True, quoting=csv.QUOTE_ALL)
-#     # Extracting field  names through first row - next() function returns the next items from the iterator
-#     field = next(csv_reader)
-#     print(field)
-#     # new will iterator with second line because I have already do with next() first line
-#     dict_data = {}
-#     for line in csv_reader:
-#         for key, value in zip(field, line):
-#             dict_data[key] = value
-#         data.append(dict_data)
-
-
-# # Alternative
-# data1 = []
-# with open("csvfiles/demo.csv", "r") as rcsv:
-#     csv_reader = csv.DictReader(
-#         rcsv, skipinitialspace=True, quoting=csv.QUOTE_ALL)
-
-#     for rows in csv_reader:
-#         data1.append(rows)
-
-# print(data1)
+import csv
+data = []
+# using file handling to open the csv file
+with open("csvfiles/demo.csv", "r") as rcsv:
+    # allow to read and return the iterator object
+    # initial space removing and remove the QUOTING
+    csv_reader = csv.reader(rcsv, skipinitialspace=True, quoting=csv.QUOTE_ALL)
+    # Extracting field  names through first row - next() function returns the next items from the iterator
+    field = next(csv_reader)
+    print(field)
+    # new will iterator with second line because I have already do with next() first line
+    dict_data = {}
+    for line in csv_reader:
+        for key, value in zip(field, line):
+            dict_data[key] = value
+        data.append(dict_data)
 
 
-# # read a csv file and print only 5 rows
-# rows = []
-# with open("csvfiles/demo.csv", "r") as rcsv:
-#     csv_reader = csv.reader(rcsv, skipinitialspace=True, quoting=csv.QUOTE_ALL)
-#     field = next(csv_reader)
-#     print(field)
+# Alternative convert the csv file into dict file
+data1 = []
+with open("csvfiles/demo.csv", "r") as rcsv:
+    csv_reader = csv.DictReader(
+        rcsv, skipinitialspace=True)
 
-# #   Iterating the csv_reader rows
-#     for row in csv_reader:
-#         rows.append(row)
+    for rows in csv_reader:
+        data1.append(rows)
 
-# print(len(rows))  # has 59 records
+print(data1)
 
-# # only printing the  5 rows with name of the flim and genre
-# for row in rows[5:10]:
-#     print(f"Name of flim: {row[0]} and Genre: {row[1]}")
+
+# read a csv file and print only 5 rows
+rows = []
+with open("csvfiles/demo.csv", "r") as rcsv:
+    csv_reader = csv.reader(rcsv, skipinitialspace=True, quoting=csv.QUOTE_ALL)
+    field = next(csv_reader)
+    print(field)
+
+#   Iterating the csv_reader rows
+    for row in csv_reader:
+        rows.append(row)
+
+print(len(rows))  # has 59 records
+
+# only printing the  5 rows with name of the flim and genre
+for row in rows[5:10]:
+    print(f"Name of flim: {row[0]} and Genre: {row[1]}")
 
 
 # write a CSV file after read from another
 
-# Manual work done by myself
-import json
-import csv
-
 try:
     with open("csvfiles/demo.csv", "r") as rcsv:
         csv_reader = csv.reader(
-            rcsv, skipinitialspace=True, quoting=csv.QUOTE_ALL)
+            rcsv, skipinitialspace=True)
 
         with open("csvfiles/write.csv", "w") as f:
             for line in csv_reader:
@@ -88,7 +84,7 @@ finally:
 # better way or using functions
 import csv
 with open("csvfiles/demo.csv", "r") as rcsv:
-    csv_reader = csv.reader(rcsv, skipinitialspace=True, quoting=csv.QUOTE_ALL)
+    csv_reader = csv.reader(rcsv, skipinitialspace=True)
     fields = next(csv_reader)
     with open("csvfiles/write.csv", "w") as wcsv:
         # it is already store in fields because use next() iterator it will not iterate this now
